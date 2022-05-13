@@ -8,17 +8,15 @@ import torch
 from torch import nn
 from torch import optim
 from torch.nn import functional as F
-from torch.utils.data import DataLoader, Datasets
+from torch.utils.data import DataLoader, Dataset
 from torch.utils.tensorboard import SummaryWriter
 # func train
 from sklearn.metrics import f1_score, classification_report
 from tqdm import tqdm
 # import built class
 from const import *
-from multihead_attention import MultiheadAttention
 from early_stopping import EarlyStopping
 from improved_model import ThesisEngagement
-from functools import reduce
 
 writer = SummaryWriter(LOG_DIR)
 
@@ -44,7 +42,7 @@ class EntubeDataset(Dataset):
     return res
 
 
-def train_baseline(model, epochs, loss_fn, optimizer, train_loader, val_loader):
+def train_model(model, epochs, loss_fn, optimizer, train_loader, val_loader):
     len_train_loader = len(train_loader)
     len_val_loader = len(val_loader)
         
@@ -160,7 +158,7 @@ print("Done init model")
 
 # train
 print("Start train ...")
-train_baseline(model, NUM_EPOCH, loss_fn, optimizer, train_loader, val_loader)
+train_model(model, NUM_EPOCH, loss_fn, optimizer, train_loader, val_loader)
 print('Done Training')
 
 #test

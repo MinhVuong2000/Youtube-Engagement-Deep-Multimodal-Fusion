@@ -16,4 +16,4 @@ tqdm
 tensorflow
 tensorboard
 nibabel
-torchsample
+git+https://github.com/ncullen93/torchsample

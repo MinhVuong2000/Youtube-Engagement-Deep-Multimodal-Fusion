@@ -15,7 +15,7 @@ How to run code:
 'label_2':tensor of label 2 which use q-score
 ```
 2. Clone this repo to your folder and change the current working directory into the folder \
-    ```cd <path/to/the/folder>```
+    ```cd <path/to/the/folder>``` \
     Folder structure:
     ```
     project

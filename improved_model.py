@@ -11,6 +11,7 @@ from torch.utils.data import DataLoader, Dataset
 from functools import reduce
 
 from const import *
+from multihead_attention import MultiheadAttention
 
 #define models
 class View(nn.Module):
@@ -87,8 +88,8 @@ class ThesisEngagement(nn.Module):
     self.linear_thumbnail = nn.Linear(2560, 1024)
 
     self.conv = nn.Sequential(
-        nn.BatchNorm1d(4),
-        nn.Conv1d(4, 1, 1),
+        nn.BatchNorm1d(3),
+        nn.Conv1d(3, 1, 1),
         nn.ReLU(inplace=True)
     )
     self.cf = nn.Linear(1024,3)
