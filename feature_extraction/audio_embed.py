@@ -2,9 +2,10 @@
 import pandas as pd
 import numpy as np
 
+from ...const import *
+
 print('Setup data entube')
-ENTUBE = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/entube.parquet'
-entube = pd.read_parquet(ENTUBE)
+entube = pd.read_parquet(ENTUBE_PATH)
 
 # load model
 print('Setup model VGGish')
@@ -17,7 +18,7 @@ model.eval().to(device)
 
 #load audio
 print('Setup path audio')
-format_path = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/audio_short_by_year/{}/{}.wav'
+format_path = DATA_SAMPLE_DIR + 'audio_by_year/{}/{}.wav'
 entube['year_upload'] = entube['upload_date'].dt.year
 audio_df = entube[['id', 'year_upload']]
 
@@ -27,7 +28,7 @@ audio_df = audio_df[audio_df.year_upload.isin([2016,2017,2020,2021])]
 audio_df['path'] = audio_df.apply(lambda row: format_path.format(row.year_upload,row.id), axis=1)
 
 
-AUDIO_EMBED_PATH = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/audio_embedding_16_17_20_21.parquet'
+AUDIO_EMBED_PATH = EMBEDDED_DATA_DIR + 'audio_embedding.parquet'
 
 def embed_audio_handler(audio_path):
   try:
@@ -55,8 +56,3 @@ for idx in range(start, end, batch_size):
   print(f'Index {idx}->{idx+batch_size} is Done')
 
 print("All is done")
-
- # Error opening '/home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/audio_short_by_year/2017/G4GgoHYfoNs.wav': File contains data in an unknown format.
- 
- 
-# Error at /home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/audio_short_by_year/2021/2GY9aMahDP8.wav: Error opening '/home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/audio_short_by_year/2021/2GY9aMahDP8.wav': System error => not existed file

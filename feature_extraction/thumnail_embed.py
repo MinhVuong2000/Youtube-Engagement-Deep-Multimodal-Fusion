@@ -4,15 +4,15 @@ import torchvision.transforms as transforms
 from torchvision import models
 from torchsummary import summary
 import numpy as np
+import pandas as pd
 import json
 import requests
 import matplotlib.pyplot as plt
+from ...const import *
 import warnings
 warnings.filterwarnings('ignore')
 
-import pandas as pd
-ENTUBE = '/home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/entube.parquet'
-entube = pd.read_parquet(ENTUBE)
+entube = pd.read_parquet(ENTUBE_PATH)
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 print(f'Using {device} for inference')
 
@@ -21,7 +21,7 @@ efficientnet = torch.nn.Sequential(*(list(efficientnet.children())[:-1]))
 utils = torch.hub.load('NVIDIA/DeepLearningExamples:torchhub', 'nvidia_convnets_processing_utils')
 efficientnet.eval().to(device)
 
-PATH_THUMBNAIL ='/home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/thumbnails_by_year/{}/{}_{}.jpg'
+PATH_THUMBNAIL = DATA_SAMPLE_DIR + 'thumbnails_by_year/{}/{}_{}.jpg'
 entube['year_upload'] = entube['upload_date'].dt.year
 thumbnail_df = entube[['id', 'year_upload']]
 thumbnail_df['path_1'] = thumbnail_df.apply(lambda row: PATH_THUMBNAIL.format(row.year_upload,row.id, 1), axis=1)
@@ -29,7 +29,7 @@ thumbnail_df['path_2'] = thumbnail_df.apply(lambda row: PATH_THUMBNAIL.format(ro
 thumbnail_df['path_3'] = thumbnail_df.apply(lambda row: PATH_THUMBNAIL.format(row.year_upload,row.id, 3), axis=1)
 thumbnail_df.iloc[10].path_1
 
-THUMBNAIL_EMBED_PATH = '/home/s1820435/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/thumbnail_embedding.parquet'
+THUMBNAIL_EMBED_PATH = EMBEDDED_DATA_DIR + 'thumbnail_embedding.parquet'
 
 import cv2
 

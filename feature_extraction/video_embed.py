@@ -3,8 +3,7 @@ import pandas as pd
 import numpy as np
 
 print('Setup data entube')
-ENTUBE = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/entube.parquet'
-entube = pd.read_parquet(ENTUBE)
+entube = pd.read_parquet(ENTUBE_PATH)
 
 # load model
 print('Setup model Slowfast')
@@ -83,7 +82,7 @@ clip_duration = (num_frames * sampling_rate) / frames_per_second
 
 #load video
 print('Setup path video')
-format_path = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/video_short_by_year/{}/{}.mp4'
+format_path = DATA_SAMPLE_DIR + 'video_by_year/{}/{}.mp4'
 entube['year_upload'] = entube['upload_date'].dt.year
 video_df_full = entube[['id', 'year_upload']]
 
@@ -96,7 +95,7 @@ print(video_df.year_upload.value_counts())
 video_df['path'] = video_df.apply(lambda row: format_path.format(row.year_upload,row.id), axis=1)
 print(video_df.columns)
 
-VIDEO_EMBED_PATH = '/home/lttung/EnTube/Data/content/drive/MyDrive/EnTube/data/DataFourCate/metadata/video_embedding_19.parquet'
+VIDEO_EMBED_PATH = EMBEDDED_DATA_DIR + 'video_embedding.parquet'
 
 def embed_video_handler(video_path):
     try:
@@ -147,5 +146,3 @@ for idx in range(start, end, batch_size):
   print(f'Index {idx}->{idx+batch_size} is Done')
 
 print("All is done")
-
-# Failed to open video AEwDZBzdbi8.mp4. [Errno 1094995529] Invalid data found when processing input: '<none>'; last error log: [mov,mp4,m4a,3gp,3g2,mj2] moov atom not found

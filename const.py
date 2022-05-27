@@ -1,8 +1,17 @@
 #define constants
 ROOT_FOLDER = ''
-TRAIN_EMBED_PATH = ROOT_FOLDER+'data/entube_embedding_train.pt'
-VAL_EMBED_PATH = ROOT_FOLDER+'data/entube_embedding_val.pt'
-TEST_EMBED_PATH = ROOT_FOLDER+'data/entube_embedding_test.pt'
+DATA_SAMPLE_DIR = ROOT_FOLDER + 'data_sample/'
+EMBEDDED_DATA_DIR = ROOT_FOLDER + 'embedded_data/'
+TRAIN_EMBED_PATH = DATA_SAMPLE_DIR+'entube_embedding_train.pt'
+VAL_EMBED_PATH = DATA_SAMPLE_DIR+'entube_embedding_val.pt'
+TEST_EMBED_PATH = DATA_SAMPLE_DIR+'entube_embedding_test.pt'
+ENTUBE_PATH = DATA_SAMPLE_DIR + 'final_entube.parquet'
+
+
+embedded_video_path = EMBEDDED_DATA_DIR + 'video_embedding.parquet'
+embedded_audio_path = EMBEDDED_DATA_DIR + 'audio_embedding.parquet'
+embedded_video_path = EMBEDDED_DATA_DIR + 'video_embedding.parquet'
+embedded_entube_path = EMBEDDED_DATA_DIR + 'entube_embedding_final.parquet'
 
 SELECT_LABEL = 'label_2'
 SAVING_FOLDER = 'trying'
