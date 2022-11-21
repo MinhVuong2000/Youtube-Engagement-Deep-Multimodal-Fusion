@@ -94,9 +94,18 @@ class ThesisEngagement(nn.Module):
     )
     self.cf = nn.Linear(1024,3)
 
+  def split_tensor(self, X):
+    X_title = X[:,:768]
+    X_tag = X[:,768:768*2] 
+    X_thumbnail = X[:,768*2:768*2+2560] 
+    X_video = X[:,768*2+2560:768*2+2560+2304*2*2].reshape(-1,2304,1,2,2) 
+    X_audio = X[:,768*2+2560+2304*2*2:].reshape(-1,62,128)
+    return X_title, X_tag, X_thumbnail, X_video, X_audio
+
   def forward(self, X):
     # unstack embed: (input_title_embed, input_tag_embed, input_thumbnail_embed, input_video_embed, input_audio_embed)
-    X_title, X_tag, X_thumbnail, X_video, X_audio = X
+    X_title, X_tag, X_thumbnail, X_video, X_audio = self.split_tensor(X)
+
     
     #encoder & context gating layer monomodal
     x_video_1 = self.encoder_video_1(X_video)

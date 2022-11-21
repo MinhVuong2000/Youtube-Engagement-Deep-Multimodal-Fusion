@@ -38,7 +38,10 @@ class EntubeDataset(Dataset):
     tensor_video = data['embedding_video'].to(self.device)
     tensor_audio = data['embedding_audio'].to(self.device)
 
-    res = ((tensor_title, tensor_tag, tensor_thumbnail, tensor_video, tensor_audio), lbl_tensor)
+    flatten_tensor_video = torch.flatten(tensor_video)
+    flatten_tensor_audio = torch.flatten(tensor_audio)
+    tensor_out = torch.cat((tensor_title,tensor_tag,tensor_thumbnail,flatten_tensor_video,flatten_tensor_audio))
+    res = (tensor_out, lbl_tensor)
     return res
 
 
