@@ -1,7 +1,11 @@
-# Youtube Engagement Analytics via Multimodal Models
+# Youtube Engagement Analytics via Deep Multimodal Model Fusion
 ---
 
-How to run code:
+The code is implemented for the paper published at Pacific-Rim Symposium on Image and Video Technology 2022 (PSIVT2022),
+
+Read the paper at [here](https://link.springer.com/chapter/10.1007/978-3-031-26431-3_5)
+
+## How to run code:
 1. You can get data which is feature extraction at [here](https://drive.google.com/drive/folders/1SM-2VzCQoSAfrI_eGVp8JJ5NU7iKJ6Lx). 
 - Data input includes 3 files: entube_embedding_train.pt, entube_embedding_val.pt, entube_embedding_test.pt
 - Data in each file is a list with each item is a dictionary including keys:
