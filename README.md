@@ -62,3 +62,24 @@ sh scripts/extract_feature.sh
 ```bash
 sh scripts/model.sh
 ```
+
+## Citation and star
+If you find this repository useful, please consider giving a star 🌟 and citation.
+```bibtex
+@inproceedings{nguyen2022youtube,
+  title={Youtube Engagement Analytics via Deep Multimodal Fusion Model},
+  author={Nguyen-Thi, Minh-Vuong and Le, Huy and Le, Truong and Le, Tung and Nguyen, Huy Tien},
+  booktitle={Pacific-Rim Symposium on Image and Video Technology},
+  pages={50--60},
+  year={2022},
+  organization={Springer}
+}
+```
+and
+```bibtex
+@article{le2022entube,
+  title={Entube: A dataset for youtube video engagement analytics},
+  author={Le, Truong and Nguyen-Thi, Minh-Vuong and Le, Huy and Vo, Quoc-Thang and Le, Tung and Nguyen, Huy Tien},
+  year={2022}
+}
+```
