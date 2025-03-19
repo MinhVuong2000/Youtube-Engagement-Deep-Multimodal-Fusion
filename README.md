@@ -1,12 +1,12 @@
 # Youtube Engagement Analytics via Deep Multimodal Model Fusion
 ---
 
-The code is implemented for the paper published at Pacific-Rim Symposium on Image and Video Technology 2022 (PSIVT2022),
+The code is implemented for the paper `Youtube Engagement Analytics via Deep Multimodal Model Fusion`published at Pacific-Rim Symposium on Image and Video Technology 2022 (PSIVT2022),
 
 Read the paper at [here](https://link.springer.com/chapter/10.1007/978-3-031-26431-3_5)
 
 ## How to run code:
-1. You can get data which is feature extraction at [here](https://drive.google.com/drive/folders/1SM-2VzCQoSAfrI_eGVp8JJ5NU7iKJ6Lx). 
+1. You can get data which is feature extraction at [here](https://drive.google.com/drive/folders/1Z1WkCR5HE_LIEcdFZIv3u0uNV0PruuI8). 
 - Data input includes 3 files: entube_embedding_train.pt, entube_embedding_val.pt, entube_embedding_test.pt
 - Data in each file is a list with each item is a dictionary including keys:
 ```python
@@ -40,7 +40,25 @@ Read the paper at [here](https://link.springer.com/chapter/10.1007/978-3-031-264
     ```
 - If you using colab, you can mount drive, and change path of data in `const.py` file at variables:  `TRAIN_EMBED_PATH`, `VAL_EMBED_PATH`, `TEST_EMBED_PATH`
 3. Install neccessary package \
-    ```pip install -r requirements.txt```
+```bash
+python3.10 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 4. The model when run will have log and checkpoints for each epoch, you can see or change path of them in `const.py` file
 5. Run file main.py \
     ```python main.py```
+
+## Additional Information
+### Crawl data
+```bash
+sh scripts/crawling.sh
+```
+### Feature extraction
+```bash
+sh scripts/extract_feature.sh
+```
+### Model training
+```bash
+sh scripts/model.sh
+```
